@@ -18,7 +18,7 @@ import AmPmSwitcher from './AmPmSwitcher'
 import { useLatest } from '../shared/utils'
 import Color from 'color'
 import { getTranslation } from '../translations/utils'
-import { memo, useCallback, useRef } from 'react'
+import { memo, useCallback, useLayoutEffect, useRef } from 'react'
 import React from 'react'
 import { sharedStyles } from '../shared/styles'
 
@@ -32,6 +32,7 @@ function TimeInputs({
   is24Hour,
   inputFontSize,
   locale,
+  focusOnMount = true,
 }: {
   inputType: PossibleInputTypes
   focused: PossibleClockTypes
@@ -46,6 +47,7 @@ function TimeInputs({
   is24Hour: boolean
   inputFontSize?: number
   locale?: string
+  focusOnMount?: boolean
 }) {
   const theme = useTheme()
 
@@ -55,6 +57,17 @@ function TimeInputs({
   const isLandscape = dimensions.width > dimensions.height
   const minutesRef = useLatest(minutes)
 
+  useLayoutEffect(() => {
+    if (focusOnMount) {
+      if (focused === clockTypes.hours && startInput.current) {
+        startInput.current.focus();
+      }
+      if (focused === clockTypes.minutes && endInput.current) {
+        endInput.current.focus();
+      }
+    }
+  }, [focusOnMount, focused]);
+  
   const onSubmitStartInput = useCallback(() => {
     if (endInput.current) {
       endInput.current.focus()
