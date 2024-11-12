@@ -111,6 +111,9 @@ function TimeInputs({
           onSubmitEditing={onSubmitStartInput}
           blurOnSubmit={false}
           onChanged={(newHoursFromInput) => {
+            if (newHoursFromInput === 0) {
+              return;
+            }
             let newHours = toHourOutputFormat(
               newHoursFromInput,
               hours,
