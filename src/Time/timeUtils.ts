@@ -168,7 +168,8 @@ export function useSwitchColors(highlighted: boolean) {
 
     if (highlighted) {
       if (theme.isV3) {
-        return theme.colors.primaryContainer
+        // return theme.colors.primaryContainer
+        return theme.colors.surfaceDisabled
       }
 
       return Color(theme.colors.primary).lighten(1).hex()
@@ -211,12 +212,14 @@ export function useInputColors(highlighted: boolean) {
 
     if (highlighted) {
       if (theme.isV3) {
-        return theme.colors.secondaryContainer
+        // return theme.colors.secondaryContainer
+        return theme.colors.inverseSurface
       }
       return Color(theme.colors.primary).lighten(1).hex()
     }
     if (theme.isV3) {
-      return theme.colors.surfaceVariant
+      // return theme.colors.surfaceVariant
+      return theme.colors.surfaceDisabled
     }
     return Color(theme.colors.surface).darken(0.1).hex()
   }, [highlighted, theme])
@@ -227,7 +230,9 @@ export function useInputColors(highlighted: boolean) {
         return theme.isV3 ? theme.colors.onSurface : theme.colors.onBackground
       }
       return theme.isV3
-        ? theme.colors.onPrimaryContainer
+        ? theme.dark
+          ? theme.colors.onPrimaryContainer
+          : theme.colors.inverseOnSurface
         : theme.colors.onBackground
     } else {
       const t = theme as any as MD2Theme
