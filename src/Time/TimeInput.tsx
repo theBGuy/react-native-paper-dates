@@ -1,17 +1,17 @@
 import {
   View,
   TextInput,
-  TextInputProps,
+  type TextInputProps,
   StyleSheet,
   Platform,
 } from 'react-native'
-import { useTheme, TouchableRipple, MD2Theme } from 'react-native-paper'
+import { useTheme, TouchableRipple, type MD2Theme } from 'react-native-paper'
 
 import Color from 'color'
 import {
   inputTypes,
-  PossibleClockTypes,
-  PossibleInputTypes,
+  type PossibleClockTypes,
+  type PossibleInputTypes,
   useInputColors,
 } from './timeUtils'
 import { forwardRef, useEffect, useState } from 'react'
